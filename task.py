@@ -64,10 +64,8 @@ class MainTask():
                 except Exception as e:
                     requests.post("http://localhost:7004/updateRecord", data=json.dumps({'taskID': taskID, 'status': 'Failed'}), headers=self.headers)
                     pass
-                else:
-                    requests.post("http://localhost:7004/updateRecord", data=json.dumps({'taskID': taskID, 'status': 'Successful'}), headers=self.headers)
-            else:
-                requests.post("http://localhost:7004/updateRecord", data=json.dumps({'taskID': taskID, 'status': 'Failed'}), headers=self.headers)
+                else: requests.post("http://localhost:7004/updateRecord", data=json.dumps({'taskID': taskID, 'status': 'Successful'}), headers=self.headers)
+            else: requests.post("http://localhost:7004/updateRecord", data=json.dumps({'taskID': taskID, 'status': 'Failed'}), headers=self.headers)
         except Exception as e:
             print('Error on line {}'.format(sys.exc_info()[-1].tb_lineno),Exception, e)
             requests.post("http://localhost:7004/updateRecord", data=json.dumps({'taskID': taskID, 'status': 'Failed'}), headers=self.headers)
