@@ -71,9 +71,7 @@ class GetKeywords():
         
         try:
             document = re.sub('\n', ' ', text)
-            if not isinstance(document, str):
-                document = normalize('NFKD', document).encode('ascii', 'ignore')
-            
+            if not isinstance(document, str): document = normalize('NFKD', document).encode('ascii', 'ignore')
             document = document.strip()
             sentences = sent_tokenize(document)
             sentences = [sentence.strip() for sentence in sentences]
@@ -107,8 +105,7 @@ class GetKeywords():
                 if len(processedWords)>10:
                     processedWords = [word for word in processedWords if ' ' in word]
                 return (list(set(processedWords)))
-            else:
-                return []
+            else: return []
         except Exception as e:
             print('Error on line {}'.format(sys.exc_info()[-1].tb_lineno),Exception, e)
             return []
