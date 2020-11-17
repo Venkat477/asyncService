@@ -47,10 +47,8 @@ def index():
                     requests.post("http://localhost:7004/updateRecord", data=json.dumps({'taskID': taskID, 'status': 'Queued'}), headers=headers)
                     index_data_to_es.apply_async(args=[data])
                     return { 'statusCode': 200, 'body': 'Data is getting added to ES!!!' }
-            else:
-                return { 'statusCode': 500, 'body': 'Check and resend the taskID and indexFile details' }
-        else:
-            return { 'statusCode': 500, 'body': 'Send the request in Proper JSON Format.' }
+            else: return { 'statusCode': 500, 'body': 'Check and resend the taskID and indexFile details' }
+        else: return { 'statusCode': 500, 'body': 'Send the request in Proper JSON Format.' }
     except Exception as e:
         print('Error on line {}'.format(sys.exc_info()[-1].tb_lineno),Exception, e)
         return { 'statusCode': 500, 'body': 'Unable to process Request' }
